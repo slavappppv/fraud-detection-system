@@ -1,3 +1,5 @@
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
+
 plugins {
 	java
 	id("org.springframework.boot") version "4.0.3" apply false;
@@ -16,6 +18,10 @@ subprojects {
 	apply(plugin = "java")
 	apply(plugin = "io.spring.dependency-management")
 
+	the<DependencyManagementExtension>().imports {
+		mavenBom("org.springframework.boot:spring-boot-dependencies:4.0.3")
+	}
+
 	java {
 		toolchain {
 			languageVersion = JavaLanguageVersion.of(22)
@@ -26,6 +32,9 @@ subprojects {
 		implementation("org.springframework.boot:spring-boot-starter")
 		testImplementation("org.springframework.boot:spring-boot-starter-test")
 		testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+		compileOnly("org.projectlombok:lombok")
+		annotationProcessor("org.projectlombok:lombok")
 	}
 
 	tasks.withType<Test> {
