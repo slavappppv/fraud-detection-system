@@ -1,7 +1,9 @@
 package com.frauddetection.transaction.model;
 
 public enum TransactionStatus {
-    NEW,
+    CREATED,
+    PROCESSING,
     APPROVED,
-    BLOCKED
+    BLOCKED,
+    REJECTED
 }

@@ -1,12 +1,11 @@
-package com.frauddetection.transaction.model;
+package com.frauddetection.transaction.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
+import com.frauddetection.transaction.model.TransactionCurrency;
+import com.frauddetection.transaction.model.TransactionStatus;
+import com.frauddetection.transaction.model.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,19 +14,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "transactions")
 @Builder
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class TransactionResponseDTO {
+    private Long id;
     private BigDecimal amount;
     private TransactionCurrency currency;
     private TransactionType type;
     private String senderCardNumber;
     private String receiverCardNumber;
     private TransactionStatus status;
-    private String ipAddress;
     private LocalDateTime createdAt;
 }
