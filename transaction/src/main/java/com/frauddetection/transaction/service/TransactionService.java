@@ -36,6 +36,7 @@ public class TransactionService {
         transaction = transactionRepository.save(transaction);
 
         TransactionResponseDTO transactionResponse = TransactionResponseDTO.builder().
+                id(transaction.getId()).
                 amount(transaction.getAmount()).
                 currency(transaction.getCurrency()).
                 type(transaction.getType()).

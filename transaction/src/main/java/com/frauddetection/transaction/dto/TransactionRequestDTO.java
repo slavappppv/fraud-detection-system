@@ -27,4 +27,3 @@ public class TransactionRequestDTO {
     @Pattern(regexp = "\\d{16}", message = "Card number must contain 16 digits")
     private String receiverCardNumber;
 }
-
