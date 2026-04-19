@@ -25,4 +25,11 @@ public class TransactionController {
                 header("Location", "/api/v1/transactions/" + createdTransaction.getId()).
                 body(createdTransaction);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TransactionResponseDTO> get(@PathVariable("id") Long id) {
+        TransactionResponseDTO transaction = service.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).
+                body(transaction);
+    }
 }

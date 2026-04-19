@@ -49,9 +49,20 @@ public class TransactionService {
         return transactionResponse;
     }
 
-    public Transaction findById(Long id) {
+    public TransactionResponseDTO findById(Long id) {
         log.debug("Finding transaction by id: {}", id);
-        return transactionRepository.findById(id)
+        Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Transaction not found: " + id));
+        TransactionResponseDTO transactionResponse = TransactionResponseDTO.builder().
+                id(transaction.getId()).
+                amount(transaction.getAmount()).
+                currency(transaction.getCurrency()).
+                type(transaction.getType()).
+                senderCardNumber(transaction.getSenderCardNumber()).
+                receiverCardNumber(transaction.getReceiverCardNumber()).
+                status(transaction.getStatus()).
+                createdAt(transaction.getCreatedAt()).build();
+        log.info("Transaction get with id: {}", transaction.getId());
+        return transactionResponse;
     }
 }
